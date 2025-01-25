@@ -1,0 +1,16 @@
+[Unit]
+Description=Wayland Keyboard LED Manager
+After=graphical.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/backlight.sh %i
+Restart=always
+RestartSec=2 
+User=root
+
+
+[Install]
+WantedBy=multi-user.target
+
+
