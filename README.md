@@ -53,7 +53,7 @@ sudo start baclight@on.service
 
 ### **Aliases**
 
-After installtion, you can use the following on your terminal to toggle the backlight:
+After installation, you can use the following on your terminal to toggle the backlight:
 
 **Turn backlight on**:
 ```bash
