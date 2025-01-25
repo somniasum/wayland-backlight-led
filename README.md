@@ -4,19 +4,18 @@ A lightweight user friendly tool to manage keyboard backlight (LED) in Wayland e
 
 ## **Features**
 
--**Keyboard Backlight Control**: Type 'on' or 'off' on your terminal of choice to change the backlight. 
+1. **Keyboard Backlight Control**: Type 'on' or 'off' on your terminal of choice to change the backlight. 
 
--**Cross-Shell Support**: Automatically sets up aliases ('on' and 'off') for your shell (Bash, Fish, Zsh).
+2. **Cross-Shell Support**: Automatically sets up aliases ('on' and 'off') for your shell (Bash, Fish, Zsh).
 
--**Persistent State Managemnet**: Uses systemd to keep the keyboard backlight on.
+3. **Persistent State Managemnet**: Uses systemd to keep the keyboard backlight on.
 
--**Polkit Interagration**: Allows service management for non-root users for the keyboard service only.
 
 ## **Installation**
 ### **Requirements**
--**Wayland**: This tool was designed to work with Wayland enviroments. Since 'xset' is not supported. Obviously.
+1. **Wayland**: This tool was designed to work with Wayland enviroments. Since 'xset' is not supported. Obviously.
 
--**brightnessctl**: The main command used in the backlight.sh script (should be installed by default in most systems). Install it using your package manager: 
+2. **brightnessctl**: The main command used in the backlight.sh script (should be installed by default in most systems). Install it using your package manager: 
 ```bash
 sudo apt install brightnessctl  # For Debain/Ubuntu
 sudo dnf install brightnessctl  # For Fedora
@@ -36,7 +35,7 @@ The format for installing:
 ```bash 
 sudo ./install.sh $(echo $HOME) $(echo $SHELL | awk -F'/' '{print $NF}')
 ```
-This set up everything needed. Home directory and shell are needed in order to auto-set aliases for your shell config. 
+This sets up everything needed. Home directory and shell are needed in order to auto-set aliases for your shell config. 
 
 3. **Service Set-Up**
 
@@ -54,12 +53,14 @@ sudo start baclight@on.service
 
 ### **Aliases**
 
-After installtion, you the following on your terminal to toggle the backlight:
--**Turn backlight on**:
+After installtion, you can use the following on your terminal to toggle the backlight:
+
+**Turn backlight on**:
 ```bash
 on
 ```
--**Turn backlight off**:
+
+**Turn backlight off**:
 ```bash
 off
 ```
