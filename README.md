@@ -45,7 +45,7 @@ Manually set up the systemd service using:
 sudo systemctl daemon-reload
 sudo enable baclight@on.service backlight@off.service
 ```
-Since should only be concerned about turning on the keyboad backlight (LED)
+For turning on the keyboad backlight (LED) service
 ```bash
 sudo start baclight@on.service 
 ```
