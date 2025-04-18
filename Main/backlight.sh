@@ -22,7 +22,7 @@ backlight_off() {
     brightnessctl -d "$scroll_lock" s 100%- > /dev/null
 }
 
-## Validate user input
+## Validate user input, post-installation
 validate_input() {
     if [[ "$1" != "on" && "$1" != "off" ]]; then
         echo "[*] Error: Usage: $0 [on|off]"
@@ -51,13 +51,12 @@ backlight_control() {
 
 }
 
-## Main function calls 
+## Main function calls
 main() {
 	validate_input "$1"
-	option="$1" 
-	backlight_control 
+	option="$1"
+	backlight_control
 
 }
-### End 
+### End
 main "$1"
-

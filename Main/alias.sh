@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-#Author: somniasum 
+#Author: somniasum
 #Title: Wayland LED Manager
-#Date Modified: 25.01.2025
+#Date Modified: 19.04.2025
 #Description: Script to handle setting aliases [on/off] to current shell config.
 
 ### Begin
@@ -28,7 +28,7 @@ shell_set() {
 }
 
 ## Set shell config name
-shell_set_value=$(shell_set) 
+shell_set_value=$(shell_set)
 
 echo "[*] Configuring $shell_set_value with needed aliases [on/off]"
 ## To check if there is an alias matching that of the script
@@ -42,7 +42,7 @@ shell_config() {
 		echo "[*] Aliases added to $shell_set_value."
 
 		## Reload shell config
-		source $shell_set_value 
+		source $shell_set_value
 	else
 		echo "[*] Error: Alias [on/off] is already set. Please review $shell config."
 		exit 1
@@ -50,4 +50,3 @@ shell_config() {
 }
 
 ### End
-
