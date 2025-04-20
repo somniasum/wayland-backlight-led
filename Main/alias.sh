@@ -22,7 +22,7 @@ shell_set() {
 			echo "$home/.zshrc"
 			;;
 		*)
-			echo "[*] Error: Current shell is unsupported. Please edit shell config manually."
+			echo "[-] Error: Current shell is unsupported. Please edit shell config manually."
 			exit 1
 	esac
 }
@@ -37,14 +37,13 @@ shell_config() {
 	if ! grep -Eq "^alias (on|off)=" "$shell_set_value"; then
 
 		## Inserts the alias to the current shell being used
+		echo "#Alias for backlight" >> "$shell_set_value"
 		echo "alias on='$main_script_path/backlight.sh on'" >> "$shell_set_value"
 		echo "alias off='$main_script_path/backlight.sh off'" >> "$shell_set_value"
 		echo "[*] Aliases added to $shell_set_value."
 
-		## Reload shell config
-		source $shell_set_value
 	else
-		echo "[*] Error: Alias [on/off] is already set. Please review $shell config."
+		echo "[-] Error: Alias [on/off] is already set. Please review $shell_set_value config."
 		exit 1
 	fi
 }

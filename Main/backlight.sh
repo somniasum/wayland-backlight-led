@@ -25,7 +25,7 @@ backlight_off() {
 ## Validate user input, post-installation
 validate_input() {
     if [[ "$1" != "on" && "$1" != "off" ]]; then
-        echo "[*] Error: Usage: $0 [on|off]"
+        echo "[-] Error: Usage: $0 [on|off]"
         exit 1
     fi
 }
@@ -36,7 +36,7 @@ backlight_control() {
 	## Detect scroll_lock error handle
     	scroll_lock=$(detect_scroll_lock)
     	if [[ -z "$scroll_lock" ]]; then
-        	echo "[*] Error: No scroll lock device found!"
+        	echo "[-] Error: No scroll lock device found!"
         	exit 1
     	fi
 
