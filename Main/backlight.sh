@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Author: somniasum
-# Date Modified: 23.01.2025
+# Date Modified: 07.05.2025
 # Title: Wayland LED Manager
 # Description: Script that monitors and manages keyboard LED
 
@@ -36,7 +36,7 @@ backlight_control() {
 	## Detect scroll_lock error handle
     	scroll_lock=$(detect_scroll_lock)
     	if [[ -z "$scroll_lock" ]]; then
-        	echo "[-] Error: No scroll lock device found!"
+        	echo "[-] Error: No keyboard detected!"
         	exit 1
     	fi
 
