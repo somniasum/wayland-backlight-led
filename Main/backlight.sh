@@ -26,7 +26,6 @@ backlight_off() {
 validate_input() {
     if [[ "$1" != "on" && "$1" != "off" ]]; then
         echo "[-] Error: Usage: $0 [on|off]"
-        exit 1
     fi
 }
 
@@ -37,7 +36,6 @@ backlight_control() {
     	scroll_lock=$(detect_scroll_lock)
     	if [[ -z "$scroll_lock" ]]; then
         	echo "[-] Error: No keyboard detected!"
-        	exit 1
     	fi
 
 	echo "[*] Setting backlight $option"

@@ -23,7 +23,6 @@ shell_set() {
 			;;
 		*)
 			echo "[-] Error: Current shell is unsupported. Please edit shell config manually."
-			exit 1
 	esac
 }
 
@@ -44,7 +43,6 @@ shell_config() {
 
 	else
 		echo "[-] Error: Alias [on/off] is already set. Please review $shell_set_value config."
-		exit 1
 	fi
 }
 
