@@ -39,9 +39,24 @@ This sets up everything needed. Home directory and shell are needed in order to 
 
 ## **Usage**
 
+## **GNOME**
+
+If on GNOME, you can use the default keyboard shortcuts to toggle the backlight:
+
+**Turn backlight on**:
+```bash
+SUPER + SHIFT + ENTER
+```
+
+**Turn backlight off**:
+```bash
+SUPER + CTRL + ENTER
+```
+You can change the shortcuts to your preferred choice. Just look through your keyboard settings to do so.
+
 ### **Aliases**
 
-After installation, you can use the following on your terminal to toggle the backlight:
+Alternatively, you can use the following on your terminal to toggle the backlight:
 
 **Turn backlight on**:
 ```bash
