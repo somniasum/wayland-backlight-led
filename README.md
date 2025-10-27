@@ -39,7 +39,7 @@ This sets up everything needed. Home directory and shell are needed in order to 
 
 ## **Usage**
 
-## **GNOME**
+### **GNOME**
 
 If on GNOME, you can use the default keyboard shortcuts to toggle the backlight:
 
