@@ -1,6 +1,6 @@
 # Wayland LED Manager
 
-A lightweight user friendly tool to manage keyboard backlight (LED) in Wayland enviroments. There is a script to handle the keyboard backlight and a service to monitor the backlight. Supports Bash, Fish and Zsh. More shell support will be added with updates.
+A lightweight user friendly tool to manage keyboard backlight (LED) in Wayland enviroments.
 
 ## **Features**
 
