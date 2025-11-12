@@ -30,13 +30,11 @@ cd wayland-backlight-led
 ```
 2. **Run script**
 
-The format for installing:
-```sudo (install script) (home directory) (shell name)```
+Run the install script:
 ```bash
-sudo ./install.sh $(echo $HOME) $(echo $SHELL | awk -F'/' '{print $NF}')
+./install.sh
 ```
-This sets up everything needed. Home directory and shell are needed in order to auto-set aliases for your shell config.
-
+This sets up everything needed.
 ## **Usage**
 
 ### **GNOME**

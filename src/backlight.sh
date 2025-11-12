@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 # Author: somniasum
-# Date Modified: 07.05.2025
-# Title: Wayland LED Manager
 # Description: Script that monitors and manages keyboard LED
 
 ### Begin

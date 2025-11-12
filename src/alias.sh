@@ -1,13 +1,12 @@
 #!/usr/bin/env bash
 #Author: somniasum
-#Title: Wayland LED Manager
-#Date Modified: 19.04.2025
 #Description: Script to handle setting aliases [on/off] to current shell config.
 
-### Begin
+source src/handler.sh
+
 ## Variables
-home=$1
-shell=$2
+home=$(echo $HOME)
+shell=$(echo $SHELL | awk -F'/' '{print $NF}')
 
 ## Shell indentifier
 shell_set() {
@@ -22,16 +21,17 @@ shell_set() {
 			echo "$home/.zshrc"
 			;;
 		*)
-			echo "[-] Error: Current shell is unsupported. Please edit shell config manually."
+			log ERROR "Current shell is unsupported. Please edit shell config manually."
 	esac
 }
 
 ## Set shell config name
 shell_set_value=$(shell_set)
 
-echo "[*] Configuring $shell_set_value with needed aliases [on/off]"
 ## To check if there is an alias matching that of the script
 shell_config() {
+
+    log INFO "Configuring $shell_set_value with needed aliases [on/off]"
 
 	if ! grep -Eq "^alias (on|off)=" "$shell_set_value"; then
 
@@ -39,11 +39,9 @@ shell_config() {
 		echo "#Alias for backlight" >> "$shell_set_value"
 		echo "alias on='$main_script_path/backlight.sh on'" >> "$shell_set_value"
 		echo "alias off='$main_script_path/backlight.sh off'" >> "$shell_set_value"
-		echo "[*] Aliases added to $shell_set_value."
+		log SUCCESS "Aliases added to $shell_set_value."
 
 	else
-		echo "[-] Error: Alias [on/off] is already set. Please review $shell_set_value config."
+		log NOTICE "Alias [on/off] is already set. Please review $shell_set_value"
 	fi
 }
-
-### End

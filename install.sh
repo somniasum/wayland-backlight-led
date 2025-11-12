@@ -6,27 +6,35 @@
 
 ### Begin
 ## Call alias script
-source Main/alias.sh
-source Main/gnome_shortcuts.sh
+source src/alias.sh
+source src/gnome_shortcuts.sh
+source src/handler.sh
+
+show_banner
+check_prerequisites
 
 ## Variables
 main_script_path="/usr/local/bin"
 
 ## Moving needed files
-echo "[*] Copying needed files to system"
-sudo cp Main/backlight.sh "$main_script_path" || { echo "[*] Error: Failed to copy backlight.sh to $main_script_path"; }
+log INFO "Copying needed files to system"
+sudo cp src/backlight.sh "$main_script_path" || log ERROR "Failed to copy backlight.sh to $main_script_path"
 
 ## Permission setting if needed
-echo "[*] Setting permissions for alias.sh and backlight.sh"
+log INFO "Setting permissions for alias.sh and backlight.sh"
 sudo chmod +x "$main_script_path/backlight.sh"
-sudo chmod +x Main/alias.sh
-sudo chmod +x Main/gnome_shortcuts.sh
+sudo chmod +x src/alias.sh
+sudo chmod +x src/gnome_shortcuts.sh
+sudo chmod +x src/handler.sh
+log SUCCESS "Permissions set successfully"
 
 ## Set Aliases to shell config
-shell_config
+log INFO "Setting aliases to shell config"
+shell_config && log SUCCESS "Aliases set successfully"
 
 ## Set Gnome Shortcuts
-set_shortcut
+log INFO "Configuring keyboard shortcuts"
+set_shortcut && log SUCCESS "Keyboard shortcuts configured successfully"
 
 ### End
-echo "[*] Installation complete!"
+log SUCCESS "Installation complete!"
