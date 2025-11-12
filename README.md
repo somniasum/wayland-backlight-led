@@ -8,8 +8,7 @@ A lightweight user friendly tool to manage keyboard backlight (LED) in Wayland e
 
 2. **Cross-Shell Support**: Automatically sets up aliases ('on' and 'off') for your shell (Bash, Fish, Zsh).
 
-3. **Persistent State Managemnet**: Uses systemd to keep the keyboard backlight on.
-
+3. **GNOME Support**: Automatically sets up keyboard shortcuts for GNOME users.
 
 ## **Installation**
 ### **Requirements**
