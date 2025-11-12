@@ -21,7 +21,7 @@ log INFO "Copying needed files to system"
 sudo cp src/backlight.sh "$main_script_path" || log ERROR "Failed to copy backlight.sh to $main_script_path"
 
 ## Permission setting if needed
-log INFO "Setting permissions for alias.sh and backlight.sh"
+log INFO "Setting permissions"
 sudo chmod +x "$main_script_path/backlight.sh"
 sudo chmod +x src/alias.sh
 sudo chmod +x src/gnome_shortcuts.sh
