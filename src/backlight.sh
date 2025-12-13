@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Author: somniasum
-# Description: Script that monitors and manages keyboard LED
+# Description: Main script that monitors and manages keyboard LED
 
 ### Begin
 ## Auto-detect the scroll lock that controls keyboard backlight (LED)

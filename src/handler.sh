@@ -4,6 +4,8 @@
 
 set -u
 
+source ../install.sh
+
 # Script configuration
 LOG_FILE="/tmp/wayland-backlight-led_$(date +%Y%m%d_%H%M%S).log"
 
@@ -63,7 +65,7 @@ show_banner() {
     cat << 'EOF'
 ╔════════════════════════════════════════╗
 ║              W4Y-BAC-L3D               ║
-║                 v.0.4                  ║
+║                 v.0.5                  ║
 ╚════════════════════════════════════════╝
 EOF
     echo -e "${COLORS[NC]}"
@@ -84,8 +86,15 @@ check_prerequisites() {
     fi
 
     if ! command -v brightnessctl &>/dev/null; then
-        log_error "Brightness control tool not found. Please install brightnessctl"
+        log_error "Brightness control tool not found."
+        log PROMPT "Install [ brightnessctl ] using your package manager."
         exit 1
     fi
     log SUCCESS "Prerequisites checked."
+
+    if ! ls $main_script_path | grep -q "brightness.sh"; then
+        log_error "Brightness script not found."
+        log PROMPT "Install [ brightness.sh ] using your package manager."
+        exit 1
+    fi
 }
