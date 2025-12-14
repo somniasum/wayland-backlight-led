@@ -12,7 +12,6 @@ show_banner
 check_prerequisites
 
 ## Variables
-main_script_path="/usr/local/bin/"
 
 ## Permission setting if needed
 log INFO "Setting permissions"

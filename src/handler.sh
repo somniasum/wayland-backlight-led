@@ -4,7 +4,8 @@
 
 set -u
 
-source ../install.sh
+## Variables
+main_script_path="/usr/local/bin/"
 
 # Script configuration
 LOG_FILE="/tmp/wayland-backlight-led_$(date +%Y%m%d_%H%M%S).log"
@@ -92,9 +93,9 @@ check_prerequisites() {
     fi
     log SUCCESS "Prerequisites checked."
 
-    if ! ls $main_script_path | grep -q "brightness.sh"; then
+    if ! ls $main_script_path | grep -q "backlight.sh"; then
         log_error "Brightness script not found."
-        log PROMPT "Install [ brightness.sh ] using your package manager."
+        log PROMPT "[ brightness.sh ] should be on /usr/local/bin/."
         exit 1
     fi
 }
