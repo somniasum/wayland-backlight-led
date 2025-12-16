@@ -12,14 +12,22 @@ show_banner
 check_prerequisites
 
 ## Permission setting if needed
-log INFO "Setting permissions"
-sudo chmod +x src/* && \
-log SUCCESS "Permissions set successfully" || log ERROR "Failed to set permissions. [ chmod +x src/* ]"
+if [ ! -w src/* ]; then
+    log INFO "Setting permissions"
+    sudo chmod +x src/* && \
+    log SUCCESS "Permissions set successfully" || log ERROR "Failed to set permissions. [ chmod +x src/* ]"
+else
+    log NOTICE "Permissions already set"
+fi
 
 ## Moving needed files
-log INFO "Copying needed files to system"
-sudo cp src/backlight.sh "$main_script_path" && \
-log SUCCESS "backlight.sh copied successfully" || log ERROR "Failed to copy backlight.sh to $main_script_path"
+if [ ! -f "$main_script_path/backlight.sh" ]; then
+    log INFO "Copying needed files to system"
+    sudo cp src/backlight.sh "$main_script_path" && \
+    log SUCCESS "backlight.sh copied successfully" || log ERROR "Failed to copy backlight.sh to $main_script_path"
+else
+    log NOTICE "backlight.sh already exists on $main_script_path"
+fi
 
 ## File management
 file_management
