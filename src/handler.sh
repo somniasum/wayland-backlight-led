@@ -129,32 +129,30 @@ file_management() {
     fi
 
     ## Systemd user directory
-    if [[ ! -d "~/.config/systemd/user" ]]; then
+    if [[ ! -d ~/.config/systemd/user ]]; then
         mkdir -p ~/.config/systemd/user
     else
         log NOTICE "Systemd user directory already exists [ ~/.config/systemd/user ]"
     fi
 
     ## Systemd service configuration
-    if  [[ ! -f "~/.config/systemd/user/kbd-backlight.service" ]]; then
+    if [[ ! -f ~/.config/systemd/user/kbd-backlight.service ]]; then
         tee ~/.config/systemd/user/kbd-backlight.service > /dev/null << 'EOF'
-        [Unit]
-        Description=Keyboard Backlight Monitor
+[Unit]
+Description=Keyboard Backlight Monitor
 
-        [Service]
-        Type=forking
-        ExecStart=/usr/local/bin/backlight.sh on
-        ExecStop=/usr/local/bin/backlight.sh off
-        Restart=on-failure
+[Service]
+Type=forking
+ExecStart=/usr/local/bin/backlight.sh on
+ExecStop=/usr/local/bin/backlight.sh off
+Restart=on-failure
 
-        [Install]
-        WantedBy=default.target
-        EOF && \
-        sudo systemctl --user enable --now kbd-backlight.service && \
-        sudo systemctl --user start kbd-backlight.service && \
+[Install]
+WantedBy=default.target
+EOF
+        systemctl --user enable --now kbd-backlight.service && \
+        systemctl --user start kbd-backlight.service && \
         log SUCCESS "Systemd LED Monitor service started [ kbd-backlight.service ]" || log ERROR "Failed to start systemd LED Monitor service [ kbd-backlight.service ]"
-
-
     else
         log NOTICE "Systemd service configuration already exists [ ~/.config/systemd/user/kbd-backlight.service ]"
     fi
