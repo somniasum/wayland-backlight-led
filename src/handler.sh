@@ -120,7 +120,7 @@ check_prerequisites() {
 file_management() {
     ## Setting needed files for persistence
     if [[ ! -f "/etc/sudoers.d/keyboard-led" ]]; then
-        echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/leds/*/trigger, /usr/bin/tee /sys/class/leds/*/brightness" | sudo tee /etc/sudoers.d/keyboard-led && \
+        echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/leds/*/trigger, /usr/bin/tee /sys/class/leds/*/brightness" | sudo tee /etc/sudoers.d/keyboard-led &> /dev/null && \
         sudo udevadm control --reload-rules && \
         sudo udevadm trigger && \
         log SUCCESS "$(sudo visudo -c -f /etc/sudoers.d/keyboard-led)" || log ERROR "Failed to set permissions on [ /etc/sudoers.d/keyboard-led ]"
@@ -150,8 +150,8 @@ Restart=on-failure
 [Install]
 WantedBy=default.target
 EOF
-        systemctl --user enable --now kbd-backlight.service && \
-        systemctl --user start kbd-backlight.service && \
+        systemctl --user enable --now kbd-backlight.service &> /dev/null && \
+        systemctl --user start kbd-backlight.service &> /dev/null && \
         log SUCCESS "Systemd LED Monitor service started [ kbd-backlight.service ]" || log ERROR "Failed to start systemd LED Monitor service [ kbd-backlight.service ]"
     else
         log NOTICE "Systemd service configuration already exists [ ~/.config/systemd/user/kbd-backlight.service ]"
