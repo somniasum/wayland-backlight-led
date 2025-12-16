@@ -66,7 +66,7 @@ show_banner() {
     cat << 'EOF'
 ╔════════════════════════════════════════╗
 ║              W4Y-BAC-L3D               ║
-║                 v.0.5                  ║
+║                 v.0.6                  ║
 ╚════════════════════════════════════════╝
 EOF
     echo -e "${COLORS[NC]}"
@@ -76,6 +76,9 @@ EOF
 
 # Check prerequisites
 check_prerequisites() {
+    ## set package_manager
+    local package_manager=$(echo $(command -v apt || command -v pacman || command -v dnf ) | awk -F '/' '{print $NF}')
+
     if [[ $EUID -eq 0 ]]; then
         log_error "Do not run as root."
         exit 1
@@ -87,15 +90,72 @@ check_prerequisites() {
     fi
 
     if ! command -v brightnessctl &>/dev/null; then
-        log_error "Brightness control tool not found."
-        log PROMPT "Install [ brightnessctl ] using your package manager."
-        exit 1
-    fi
-    log SUCCESS "Prerequisites checked."
+        log_error "[ brightnessctl ] not found."
+        echo -ne "${LOG_LEVELS[PROMPT]} Install brightnessctl? [${COLORS[GREEN]}Y${COLORS[NC]}/${COLORS[RED]}n${COLORS[NC]}]: "
+        read -r response
 
-    if ! ls $main_script_path | grep -q "backlight.sh"; then
-        log_error "Brightness script not found."
-        log PROMPT "[ brightness.sh ] should be on /usr/local/bin/."
-        exit 1
+       if [[ $response =~ ^[Yy]$ ]]; then
+          case "$package_manager" in
+            apt)
+              sudo apt install brightnessctl &> /dev/null && \
+              log SUCCESS "[ brightnessctl ] installed."
+              ;;
+            pacman)
+              sudo pacman -S brightnessctl &> /dev/null && \
+              log SUCCESS "[ brightnessctl ] installed."
+              ;;
+            dnf)
+              sudo dnf install brightnessctl &> /dev/null && \
+              log SUCCESS "[ brightnessctl ] installed."
+              ;;
+          esac
+        else
+            log WARN "Brightness control tool is needed. [ brightnessctl ]"
+            exit 1
+        fi
+    fi
+
+}
+
+file_management() {
+    ## Setting needed files for persistence
+    if [[ ! -f "/etc/sudoers.d/keyboard-led" ]]; then
+        echo "$(whoami) ALL=(ALL) NOPASSWD: /usr/bin/tee /sys/class/leds/*/trigger, /usr/bin/tee /sys/class/leds/*/brightness" | sudo tee /etc/sudoers.d/keyboard-led && \
+        sudo udevadm control --reload-rules && \
+        sudo udevadm trigger && \
+        log SUCCESS "$(sudo visudo -c -f /etc/sudoers.d/keyboard-led)" || log ERROR "Failed to set permissions on [ /etc/sudoers.d/keyboard-led ]"
+    else
+        log NOTICE "Sudoers file configuration already exists [ /etc/sudoers.d/keyboard-led ]"
+    fi
+
+    ## Systemd user directory
+    if [[ ! -d "~/.config/systemd/user" ]]; then
+        mkdir -p ~/.config/systemd/user
+    else
+        log NOTICE "Systemd user directory already exists [ ~/.config/systemd/user ]"
+    fi
+
+    ## Systemd service configuration
+    if  [[ ! -f "~/.config/systemd/user/kbd-backlight.service" ]]; then
+        tee ~/.config/systemd/user/kbd-backlight.service > /dev/null << 'EOF'
+        [Unit]
+        Description=Keyboard Backlight Monitor
+
+        [Service]
+        Type=forking
+        ExecStart=/usr/local/bin/backlight.sh on
+        ExecStop=/usr/local/bin/backlight.sh off
+        Restart=on-failure
+
+        [Install]
+        WantedBy=default.target
+        EOF && \
+        sudo systemctl --user enable --now kbd-backlight.service && \
+        sudo systemctl --user start kbd-backlight.service && \
+        log SUCCESS "Systemd LED Monitor service started [ kbd-backlight.service ]" || log ERROR "Failed to start systemd LED Monitor service [ kbd-backlight.service ]"
+
+
+    else
+        log NOTICE "Systemd service configuration already exists [ ~/.config/systemd/user/kbd-backlight.service ]"
     fi
 }
