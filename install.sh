@@ -30,8 +30,10 @@ shell_config && \
 log SUCCESS "Aliases set successfully" || log ERROR "Failed to set aliases"
 
 ## Set Gnome Shortcuts
-log INFO "Configuring keyboard shortcuts"
-set_shortcut && \
-log SUCCESS "Keyboard shortcuts configured successfully" || log ERROR "Failed to configure keyboard shortcuts"
+if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
+    log INFO "Configuring keyboard shortcuts"
+    set_shortcut && \
+    log SUCCESS "Keyboard shortcuts configured successfully" || log ERROR "Failed to configure keyboard shortcuts"
+fi
 
 log SUCCESS "Installation complete!"
