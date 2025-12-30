@@ -12,13 +12,9 @@ show_banner
 check_prerequisites
 
 ## Permission setting if needed
-if [ ! -w src/* ]; then
-    log INFO "Setting permissions"
-    sudo chmod +x src/* && \
-    log SUCCESS "Permissions set successfully" || log ERROR "Failed to set permissions. [ chmod +x src/* ]"
-else
-    log NOTICE "Permissions already set"
-fi
+log INFO "Setting permissions"
+chmod +x src/* 2>/dev/null && \
+log SUCCESS "Permissions set successfully" || log ERROR "Failed to set permissions. [ chmod +x src/* ]"
 
 ## Moving needed files
 if [ ! -f "$main_script_path/backlight.sh" ]; then
