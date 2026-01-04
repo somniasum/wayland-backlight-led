@@ -91,26 +91,26 @@ check_prerequisites() {
 
     if ! command -v brightnessctl &>/dev/null; then
         log_error "[ brightnessctl ] not found."
-        echo -ne "${LOG_LEVELS[PROMPT]} Install brightnessctl? [${COLORS[GREEN]}Y${COLORS[NC]}/${COLORS[RED]}n${COLORS[NC]}]: "
+        echo -ne "${LOG_LEVELS[PROMPT]} Install [ brightnessctl ]? [${COLORS[GREEN]}Y${COLORS[NC]}/${COLORS[RED]}n${COLORS[NC]}]: "
         read -r response
 
        if [[ $response =~ ^[Yy]$ ]]; then
           case "$package_manager" in
             apt)
-              sudo apt install brightnessctl &> /dev/null && \
+              sudo apt install brightnessctl && \
               log SUCCESS "[ brightnessctl ] installed."
               ;;
             pacman)
-              sudo pacman -S brightnessctl &> /dev/null && \
+              sudo pacman -S brightnessctl && \
               log SUCCESS "[ brightnessctl ] installed."
               ;;
             dnf)
-              sudo dnf install brightnessctl &> /dev/null && \
+              sudo dnf install brightnessctl && \
               log SUCCESS "[ brightnessctl ] installed."
               ;;
           esac
         else
-            log WARN "Brightness control tool is needed. [ brightnessctl ]"
+            log WARN "[ brightnessctl ] needed."
             exit 1
         fi
     fi
