@@ -1,27 +1,18 @@
-# Wayland LED Manager
+# Wayland Backlight LED
 
 A lightweight user friendly tool to manage keyboard backlight (LED) in Wayland enviroments.
 
 ## **Features**
 
-1. **Keyboard Backlight Control**: Type 'on' or 'off' on your terminal of choice to change the backlight.
+1. **Keyboard Backlight Control**: Type 'on' or 'off' on your terminal of choice.
 
-2. **Cross-Shell Support**: Automatically sets up aliases ('on' and 'off') for your shell (Bash, Fish, Zsh).
+2. **Cross-Shell Support**: Automatically sets up aliases ('on' and 'off') for your shell. Supported shells: Bash, Fish, Zsh.
 
 3. **GNOME Support**: Automatically sets up keyboard shortcuts for GNOME users.
 
 ## **Installation**
-### **Requirements**
-1. **Wayland**: This tool was designed to work with Wayland enviroments. Since 'xset' is not supported. Obviously.
 
-2. **brightnessctl**: The main command used in the backlight.sh script (should be installed by default in most systems). Install it using your package manager:
-```bash
-sudo apt install brightnessctl  # For Debain/Ubuntu
-sudo dnf install brightnessctl  # For Fedora
-sudo pacman -S brightnessctl    # For Arch Linux
-```
-
-### **Installation Steps**
+### **Steps**
 1. **Clone the repository**
 ```bash
 git clone https://github.com/somniasum/wayland-backlight-led
