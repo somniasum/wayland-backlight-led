@@ -25,6 +25,15 @@ Run the install script:
 ./install.sh
 ```
 This sets up everything needed.
+
+## **Uninstallation**
+
+Run the uninstall script:
+```bash
+./uninstall.sh
+```
+This will remove all the installed files and configurations.
+
 ## **Usage**
 
 ### **GNOME**
