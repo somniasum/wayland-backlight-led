@@ -6,7 +6,7 @@ source src/handler.sh
 
 ## Variables
 home=$(echo $HOME)
-shell=$(echo $SHELL | awk -F'/' '{print $NF}')
+shell="${SHELL##*/}"
 
 ## Shell indentifier
 shell_set() {
