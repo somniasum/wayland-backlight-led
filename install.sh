@@ -4,7 +4,6 @@
 
 ## Call script functions
 source src/alias.sh
-source src/gnome_shortcuts.sh
 source src/handler.sh
 
 ## Start
