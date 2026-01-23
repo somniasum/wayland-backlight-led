@@ -1,9 +1,12 @@
 <svg fill="none" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
   <style>
     @keyframes colorShift {
-      0% { fill: #FFFFFF; }
-      50% { fill: #C9d3ff; }
-      100% { fill: #083333; }
+      0% { fill: #F52727; }
+      20% { fill: #F5E427; }
+      40% { fill: #C5F527; }
+      60% { fill: #27F5CC; }
+      80% { fill: #272AF5; }
+      100% { fill: #F527BE; }
     }
 
     text {
