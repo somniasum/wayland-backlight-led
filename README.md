@@ -1,4 +1,6 @@
-# Wayland Backlight LED
+<div align="center">
+  <img src="src/title.svg" alt="W4YBACL3D" width="600">
+</div>
 
 A lightweight user friendly tool to manage keyboard backlight (LED) in Wayland enviroments.
 

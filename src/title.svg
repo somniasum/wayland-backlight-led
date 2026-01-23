@@ -1,0 +1,20 @@
+<svg fill="none" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes colorShift {
+      0% { fill: #FFFFFF; }
+      50% { fill: #C9d3ff; }
+      100% { fill: #083333; }
+    }
+
+    text {
+      font-family: monospace;
+      font-weight: 900;
+      font-size: 64px;
+      animation: colorShift 2s infinite;
+      letter-spacing: 0.1em;
+    }
+  </style>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle">
+    W4YBACL3D
+  </text>
+</svg>
