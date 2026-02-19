@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Author: somniasum
-# Description: Keyboard backlight controller with persistent LED state monitoring
+# Description: keyboard backlight state controller
 
 STATE_FILE="/tmp/kbd_backlight_state"
 PID_FILE="/tmp/kbd_backlight_monitor.pid"
