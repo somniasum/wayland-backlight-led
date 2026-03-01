@@ -17,9 +17,10 @@ A lightweight user friendly tool to manage keyboard backlight (LED) in Wayland e
 ### **Steps**
 1. **Clone the repository**
 ```bash
-git clone https://github.com/somniasum/wayland-backlight-led
+git clone https://github.com/somniasum/wayland-backlight-led && \ 
 cd wayland-backlight-led
 ```
+
 2. **Run script**
 
 Run the install script:
