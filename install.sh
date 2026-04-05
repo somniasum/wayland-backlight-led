@@ -42,6 +42,8 @@ if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
     if [[ $response =~ ^[Yy]$ ]]; then
         set_shortcut && \
         log SUCCESS "Keyboard shortcuts configured successfully" || log ERROR "Failed to configure keyboard shortcuts"
+    else
+        log NOTICE "Skipping GNOME shortcuts setup"
     fi
 fi
 
