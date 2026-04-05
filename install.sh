@@ -35,8 +35,14 @@ log SUCCESS "Aliases set successfully" || log ERROR "Failed to set aliases"
 ## Set Gnome Shortcuts
 if [[ $XDG_CURRENT_DESKTOP == "GNOME" ]]; then
     log INFO "Configuring keyboard shortcuts"
-    set_shortcut && \
-    log SUCCESS "Keyboard shortcuts configured successfully" || log ERROR "Failed to configure keyboard shortcuts"
+
+    echo -ne "${LOG_LEVELS[PROMPT]} Set GNOME shorcuts? [${COLORS[GREEN]}Y${COLORS[NC]}/${COLORS[RED]}n${COLORS[NC]}]: "
+    read -r response
+
+    if [[ $response =~ ^[Yy]$ ]]; then
+        set_shortcut && \
+        log SUCCESS "Keyboard shortcuts configured successfully" || log ERROR "Failed to configure keyboard shortcuts"
+    fi
 fi
 
 log SUCCESS "Installation complete!"
