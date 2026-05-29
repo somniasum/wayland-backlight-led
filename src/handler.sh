@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Author: somniasum
 # Description: A script to handle errors and logs.
-
+# Main logic script for project
 set -u
 
 ## Variables
@@ -66,7 +66,7 @@ show_banner() {
     cat << 'EOF'
 ╔════════════════════════════════════════╗
 ║                W4YBACL3D               ║
-║                 v.1.10                 ║
+║                 v.1.11                 ║
 ╚════════════════════════════════════════╝
 EOF
     echo -e "${COLORS[NC]}"
@@ -89,11 +89,13 @@ check_prerequisites() {
         exit 1
     fi
 
+    # Check if brightnessctl is installed and is the main tool for the program
     if ! command -v brightnessctl &>/dev/null; then
         log_error "[ brightnessctl ] not found."
         echo -ne "${LOG_LEVELS[PROMPT]} Install [ brightnessctl ]? [${COLORS[GREEN]}Y${COLORS[NC]}/${COLORS[RED]}n${COLORS[NC]}]: "
         read -r response
 
+        # Check what package manager to use depending on the distro
        if [[ $response =~ ^[Yy]$ ]]; then
           case "$package_manager" in
             apt)
@@ -150,7 +152,9 @@ Restart=on-failure
 [Install]
 WantedBy=default.target
 EOF
-        systemctl --user enable --now kbd-backlight.service &> /dev/null && \
+
+    # Enable and start the systemd service
+    systemctl --user enable --now kbd-backlight.service &> /dev/null && \
         systemctl --user start kbd-backlight.service &> /dev/null && \
         log SUCCESS "Systemd LED Monitor service started [ kbd-backlight.service ]" || log ERROR "Failed to start systemd LED Monitor service [ kbd-backlight.service ]"
     else
