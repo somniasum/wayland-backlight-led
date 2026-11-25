@@ -68,7 +68,7 @@ show_banner
 echo -ne "${LOG_LEVELS[PROMPT]} Uninstall wayland-backlight-led? [${COLORS[GREEN]}Y${COLORS[NC]}/${COLORS[RED]}n${COLORS[NC]}]: "
 read -r response
 if [[ $response =~ ^[Yy]$ ]]; then
-  remove &&
+  remove && \
     log SUCCESS "Uninstallation completed." || log ERROR "Failed to uninstall [ wayland-backlight-led ]."
 else
   log NOTICE "Uninstallation cancelled."
