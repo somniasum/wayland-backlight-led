@@ -7,8 +7,10 @@ PID_FILE="/tmp/kbd_backlight_monitor.pid"
 
 ## Auto-detect the scroll lock that controls keyboard backlight (LED)
 detect_scroll_lock() {
-    scroll_lock_1=$(brightnessctl -l | grep scrolllock | awk 'NR==1 {print $2}' | tr -d "'")
-    scroll_lock_2=$(brightnessctl -l | grep scrolllock | awk 'NR==2 {print $2}' | tr -d "'")
+
+    scroll_lock_1=$(brightnessctl -l && grep scrolllock && awk 'NR==1 {print $2}' && tr -d "'")
+    scroll_lock_2=$(brightnessctl -l && grep scrolllock && awk 'NR==2 {print $2}' && tr -d "'")
+
     [[ $scroll_lock_1 == "input2::scrolllock" ]] && echo "$scroll_lock_2" || echo "$scroll_lock_1"
 }
 
@@ -23,7 +25,7 @@ set_led() {
         echo "none" > "$led_path/trigger" 2>/dev/null
     fi
 
-    # Set brightness
+    # Brightness state control
     if [[ -w "$led_path/brightness" ]]; then
         echo "$state" > "$led_path/brightness" 2>/dev/null
     else
