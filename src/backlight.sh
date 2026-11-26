@@ -97,6 +97,8 @@ backlight_control() {
         exit 1
     fi
 
+
+    ## Main logic
     case "$option" in
         on)
             echo "[*] Setting backlight [ ON ]"
